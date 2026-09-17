@@ -8110,6 +8110,12 @@
                 "dynamic": true
               },
               "defaultValue": "center center"
+            },
+            {
+              "type": "image",
+              "name": "mobileBackgroundImage",
+              "label": "Mobile background image",
+              "helpText": "Optional portrait image used below 768px. Falls back to the desktop image when empty."
             }
           ]
         },
