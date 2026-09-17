@@ -1,5 +1,5 @@
 @theme {
-  --font-sans: Cabin Variable, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: Inter,Poppins,Poppins-Bold,ui-sans-serif,sans-serif;
   --font-serif: Newsreader Variable, ui-serif, Georgia, serif;
 
   --breakpoint-sm: 32em;
