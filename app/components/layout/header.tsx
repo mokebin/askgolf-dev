@@ -126,8 +126,13 @@ export function Header() {
   const isHome = useIsHomeCheck();
   const { y } = useWindowScroll();
   const routeError = useRouteError();
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  const scrolled = y >= 50;
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const scrolled = isHydrated && y >= 50;
   const enableTransparent = enableTransparentHeader && isHome && !routeError;
   const isTransparent = enableTransparent && !scrolled;
 
@@ -211,12 +216,23 @@ function ShopifyAccountButton() {
   const rootData = useRouteLoaderData<RootLoader>("root");
   const publicStoreDomain = rootData?.publicStoreDomain;
   const publicAccessToken = rootData?.consent?.storefrontAccessToken;
-  const [componentsReady, setComponentsReady] = useState(
-    () =>
+  // const [componentsReady, setComponentsReady] = useState(
+  //   () =>
+  //     typeof customElements !== "undefined" &&
+  //     customElements.get("shopify-store") !== undefined &&
+  //     customElements.get("shopify-account") !== undefined,
+  // );
+  const [componentsReady, setComponentsReady] = useState(false);
+  useEffect(() => {
+    const accountComponentsReady =
       typeof customElements !== "undefined" &&
       customElements.get("shopify-store") !== undefined &&
-      customElements.get("shopify-account") !== undefined,
-  );
+      customElements.get("shopify-account") !== undefined;
+
+    if (accountComponentsReady) {
+      setComponentsReady(true);
+    }
+  }, []);
   const [isLoading, setIsLoading] = useState(false);
   // Bootstrapped client-side via /api/cart (CartStoreSync) — the token must
   // not be embedded in the SSR document, which stays anonymous so Oxygen
