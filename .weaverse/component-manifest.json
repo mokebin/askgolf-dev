@@ -4517,6 +4517,236 @@
       ]
     },
     {
+      "type": "logo-list",
+      "title": "Logo list",
+      "hasLoader": false,
+      "childTypes": [
+        "logo-list-item",
+        "spacer"
+      ],
+      "settings": [
+        {
+          "group": "Logo list",
+          "inputs": [
+            {
+              "type": "text",
+              "name": "heading",
+              "label": "Heading",
+              "defaultValue": "As Seen In"
+            },
+            {
+              "type": "select",
+              "name": "headingAlignment",
+              "label": "Heading alignment",
+              "configs": {
+                "options": [
+                  {
+                    "label": "Left",
+                    "value": "left"
+                  },
+                  {
+                    "label": "Center",
+                    "value": "center"
+                  },
+                  {
+                    "label": "Right",
+                    "value": "right"
+                  }
+                ]
+              },
+              "defaultValue": "center"
+            },
+            {
+              "type": "range",
+              "name": "headingSpacing",
+              "label": "Space below heading",
+              "configs": {
+                "max": 100,
+                "min": 0,
+                "step": 4,
+                "unit": "px"
+              },
+              "defaultValue": 32
+            },
+            {
+              "type": "range",
+              "name": "paddingTop",
+              "label": "Top spacing",
+              "configs": {
+                "max": 160,
+                "min": 0,
+                "step": 4,
+                "unit": "px"
+              },
+              "defaultValue": 48
+            },
+            {
+              "type": "range",
+              "name": "paddingBottom",
+              "label": "Bottom spacing",
+              "configs": {
+                "max": 160,
+                "min": 0,
+                "step": 4,
+                "unit": "px"
+              },
+              "defaultValue": 48
+            },
+            {
+              "type": "range",
+              "name": "desktopMaxWidth",
+              "label": "Desktop maximum width",
+              "configs": {
+                "max": 1920,
+                "min": 800,
+                "step": 40,
+                "unit": "px"
+              },
+              "defaultValue": 1600
+            },
+            {
+              "type": "range",
+              "name": "gap",
+              "label": "Gap",
+              "configs": {
+                "max": 80,
+                "min": 8,
+                "step": 4,
+                "unit": "px"
+              },
+              "defaultValue": 32
+            },
+            {
+              "type": "range",
+              "name": "mobileItems",
+              "label": "Logos per view on mobile",
+              "configs": {
+                "max": 3,
+                "min": 1,
+                "step": 1
+              },
+              "defaultValue": 2
+            },
+            {
+              "type": "range",
+              "name": "tabletItems",
+              "label": "Logos per view on tablet",
+              "configs": {
+                "max": 5,
+                "min": 2,
+                "step": 1
+              },
+              "defaultValue": 4
+            },
+            {
+              "type": "range",
+              "name": "desktopItems",
+              "label": "Logos per view on desktop",
+              "configs": {
+                "max": 8,
+                "min": 3,
+                "step": 1
+              },
+              "defaultValue": 6
+            },
+            {
+              "type": "switch",
+              "name": "showArrows",
+              "label": "Show desktop arrows",
+              "defaultValue": true
+            },
+            {
+              "type": "switch",
+              "name": "loop",
+              "label": "Loop",
+              "defaultValue": false
+            }
+          ]
+        }
+      ],
+      "presets": {
+        "children": [
+          {
+            "type": "logo-list-item"
+          },
+          {
+            "type": "logo-list-item"
+          },
+          {
+            "type": "logo-list-item"
+          },
+          {
+            "type": "logo-list-item"
+          },
+          {
+            "type": "logo-list-item"
+          },
+          {
+            "type": "logo-list-item"
+          }
+        ],
+        "desktopItems": 6,
+        "desktopMaxWidth": 1600,
+        "gap": 32,
+        "heading": "As Seen In",
+        "headingAlignment": "center",
+        "headingSpacing": 32,
+        "loop": false,
+        "mobileItems": 2,
+        "paddingBottom": 48,
+        "paddingTop": 48,
+        "showArrows": true,
+        "tabletItems": 4
+      }
+    },
+    {
+      "type": "logo-list-item",
+      "title": "Logo",
+      "hasLoader": false,
+      "settings": [
+        {
+          "group": "Logo",
+          "inputs": [
+            {
+              "type": "image",
+              "name": "image",
+              "label": "Logo image"
+            },
+            {
+              "type": "text",
+              "name": "altText",
+              "label": "Alt text",
+              "helpText": "Describe the publication or brand logo."
+            },
+            {
+              "type": "range",
+              "name": "logoHeight",
+              "label": "Maximum logo height",
+              "configs": {
+                "max": 100,
+                "min": 24,
+                "step": 2,
+                "unit": "px"
+              },
+              "defaultValue": 54
+            },
+            {
+              "type": "range",
+              "name": "logoMaxWidth",
+              "label": "Maximum logo width",
+              "configs": {
+                "max": 260,
+                "min": 80,
+                "step": 10,
+                "unit": "px"
+              },
+              "defaultValue": 180
+            }
+          ]
+        }
+      ]
+    },
+    {
       "type": "main-collection",
       "title": "Main collection",
       "hasLoader": false,
