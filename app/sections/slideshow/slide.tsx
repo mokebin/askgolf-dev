@@ -120,36 +120,36 @@ export default function Slide(props: SlideProps) {
   const eagerSlide = useContext(EagerSlideContext);
   let showBackground = useDeferredBackground(eagerSlide);
   return (
-      <div {...rest} className="relative h-full w-full overflow-hidden">
+    <div {...rest} className="relative h-full w-full overflow-hidden">
       {/* Mobile background: shown below 768px */}
       <div className="absolute inset-0 md:hidden">
         <OverlayAndBackground
-            backgroundImage={
-              showBackground
-                  ? mobileBackgroundImage || backgroundImage
-                  : undefined
-            }
-            backgroundFit={backgroundFit}
-            backgroundPosition={backgroundPosition}
-            loading={eagerSlide ? "eager" : loading}
-            enableOverlay={enableOverlay}
-            overlayOpacity={overlayOpacity}
-            overlayColor={overlayColor}
-            overlayColorHover={overlayColorHover}
+          backgroundImage={
+            showBackground
+              ? mobileBackgroundImage || backgroundImage
+              : undefined
+          }
+          backgroundFit={backgroundFit}
+          backgroundPosition={backgroundPosition}
+          loading={eagerSlide ? "eager" : loading}
+          enableOverlay={enableOverlay}
+          overlayOpacity={overlayOpacity}
+          overlayColor={overlayColor}
+          overlayColorHover={overlayColorHover}
         />
       </div>
 
       {/* Desktop/tablet background: shown from 768px */}
       <div className="absolute inset-0 hidden md:block">
         <OverlayAndBackground
-            backgroundImage={showBackground ? backgroundImage : undefined}
-            backgroundFit={backgroundFit}
-            backgroundPosition={backgroundPosition}
-            loading={eagerSlide ? "eager" : loading}
-            enableOverlay={enableOverlay}
-            overlayOpacity={overlayOpacity}
-            overlayColor={overlayColor}
-            overlayColorHover={overlayColorHover}
+          backgroundImage={showBackground ? backgroundImage : undefined}
+          backgroundFit={backgroundFit}
+          backgroundPosition={backgroundPosition}
+          loading={eagerSlide ? "eager" : loading}
+          enableOverlay={enableOverlay}
+          overlayOpacity={overlayOpacity}
+          overlayColor={overlayColor}
+          overlayColorHover={overlayColorHover}
         />
       </div>
       <div
@@ -182,16 +182,16 @@ export const schema = createSchema({
       group: "Background",
       inputs: [
         ...backgroundInputs.filter((inp) =>
-            ["backgroundImage", "backgroundFit", "backgroundPosition"].includes(
-                inp.name as string,
-            ),
+          ["backgroundImage", "backgroundFit", "backgroundPosition"].includes(
+            inp.name as string,
+          ),
         ),
         {
           type: "image",
           name: "mobileBackgroundImage",
           label: "Mobile background image",
           helpText:
-              "Optional portrait image used below 768px. Falls back to the desktop image when empty.",
+            "Optional portrait image used below 768px. Falls back to the desktop image when empty.",
         },
       ],
     },
