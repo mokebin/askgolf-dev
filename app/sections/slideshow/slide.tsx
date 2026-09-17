@@ -70,7 +70,7 @@ export interface SlideProps
 }
 
 /**
- * Non-first slides are invisible on first paint (fade effect = opacity 0,
+ * Non-first 1 slides are invisible on first paint (fade effect = opacity 0,
  * slide effect = translated off-screen), yet their full-bleed background is
  * still treated as "in viewport" by native lazy-loading and fetched
  * immediately — ~230KB of off-screen imagery competing with the LCP slide.
