@@ -1,8 +1,8 @@
-import { createSchema, type HydrogenComponentProps } from "@weaverse/hydrogen";
+import { createSchema } from "@weaverse/hydrogen";
 import type { SectionProps } from "~/components/section";
 import { layoutInputs, Section } from "~/components/section";
 
-interface CategoryGridProps extends SectionProps, HydrogenComponentProps {
+interface CategoryGridProps extends SectionProps {
   heading?: string;
   gap?: number;
 }
@@ -14,6 +14,12 @@ export default function CategoryGrid(props: CategoryGridProps) {
     children = [],
     ...rest
   } = props;
+
+  const categoryChildren = Array.isArray(children)
+    ? children
+    : children
+      ? [children]
+      : [];
 
   return (
     <Section {...rest}>
@@ -30,7 +36,7 @@ export default function CategoryGrid(props: CategoryGridProps) {
             gap: `${gap}px`,
           }}
         >
-          {children.map((child, index) => (
+          {categoryChildren.map((child, index) => (
             <div key={index} className="min-w-0">
               {child}
             </div>
