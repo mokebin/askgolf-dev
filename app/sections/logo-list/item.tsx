@@ -1,6 +1,7 @@
 /*
- *  单个 Logo 图片、链接、alt 文本。
- * */
+ * 单个 Logo 图片、alt 文本和显示尺寸。
+ */
+
 import {
   createSchema,
   type HydrogenComponentProps,

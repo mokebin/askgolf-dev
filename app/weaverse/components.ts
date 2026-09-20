@@ -9,6 +9,8 @@ import * as AllProductsGrid from "~/sections/all-products/product-grid";
 import * as AllProductsToolbar from "~/sections/all-products/toolbar";
 import * as BlogPost from "~/sections/blog-post";
 import * as Blogs from "~/sections/blogs";
+import * as CategoryGrid from "~/sections/category-grid";
+import * as CategoryGridItem from "~/sections/category-grid/item";
 import * as CollectionList from "~/sections/collection-list";
 import * as CollectionListItems from "~/sections/collection-list/collections-items";
 import * as ColumnsWithImages from "~/sections/columns-with-images";
@@ -99,6 +101,8 @@ export const components: HydrogenComponent[] = [
   BlogPost,
   Blogs,
   Page,
+  CategoryGrid,
+  CategoryGridItem,
   VideoEmbed,
   VideoEmbedItem,
   HeroImage,

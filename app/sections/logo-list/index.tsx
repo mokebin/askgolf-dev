@@ -1,19 +1,19 @@
 /*
- *  标题、Swiper、每屏数量、箭头和间距。
- * */
+ * 标题、Swiper、每屏数量、箭头和间距。
+ */
+
 import { createSchema, type HydrogenComponentProps } from "@weaverse/hydrogen";
 import clsx from "clsx";
 import { type CSSProperties, useId } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { SectionProps } from "~/components/section";
+import { layoutInputs, Section } from "~/components/section";
 
-export interface LogoListProps extends HydrogenComponentProps {
+export interface LogoListProps extends SectionProps, HydrogenComponentProps {
   heading?: string;
   headingAlignment?: "left" | "center" | "right";
   headingSpacing?: number;
-  paddingTop?: number;
-  paddingBottom?: number;
-  desktopMaxWidth?: number;
   gap?: number;
   mobileItems?: number;
   tabletItems?: number;
@@ -27,9 +27,6 @@ export default function LogoList(props: LogoListProps) {
     heading = "As Seen In",
     headingAlignment = "center",
     headingSpacing = 32,
-    paddingTop = 48,
-    paddingBottom = 48,
-    desktopMaxWidth = 1600,
     gap = 32,
     mobileItems = 2,
     tabletItems = 4,
@@ -47,7 +44,6 @@ export default function LogoList(props: LogoListProps) {
   const canLoop = loop && children.length > desktopItems;
 
   const swiperStyle = {
-    "--logo-list-gap": `${gap}px`,
     "--logo-list-mobile-width": `calc((100% - ${
       gap * (mobileItems - 1)
     }px) / ${mobileItems})`,
@@ -66,20 +62,8 @@ export default function LogoList(props: LogoListProps) {
   };
 
   return (
-    <section
-      {...rest}
-      className="w-full bg-white"
-      style={{
-        paddingTop: `${paddingTop}px`,
-        paddingBottom: `${paddingBottom}px`,
-      }}
-    >
-      <div
-        className="mx-auto w-full px-4 md:px-8 lg:px-12"
-        style={{
-          maxWidth: `${desktopMaxWidth}px`,
-        }}
-      >
+    <Section {...rest}>
+      <div className="w-full">
         <div
           className={clsx(
             "relative flex min-h-10 items-center",
@@ -158,18 +142,18 @@ export default function LogoList(props: LogoListProps) {
           .logo-list-swiper .swiper-wrapper {
             display: flex;
           }
-        
+
           .logo-list-swiper .swiper-slide {
             flex-shrink: 0;
             width: var(--logo-list-mobile-width);
           }
-        
+
           @media (min-width: 768px) {
             .logo-list-swiper .swiper-slide {
               width: var(--logo-list-tablet-width);
             }
           }
-        
+
           @media (min-width: 1024px) {
             .logo-list-swiper .swiper-slide {
               width: var(--logo-list-desktop-width);
@@ -204,7 +188,7 @@ export default function LogoList(props: LogoListProps) {
           ))}
         </Swiper>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -255,42 +239,6 @@ export const schema = createSchema({
             unit: "px",
           },
           defaultValue: 32,
-        },
-        {
-          type: "range",
-          name: "paddingTop",
-          label: "Top spacing",
-          configs: {
-            min: 0,
-            max: 160,
-            step: 4,
-            unit: "px",
-          },
-          defaultValue: 48,
-        },
-        {
-          type: "range",
-          name: "paddingBottom",
-          label: "Bottom spacing",
-          configs: {
-            min: 0,
-            max: 160,
-            step: 4,
-            unit: "px",
-          },
-          defaultValue: 48,
-        },
-        {
-          type: "range",
-          name: "desktopMaxWidth",
-          label: "Desktop maximum width",
-          configs: {
-            min: 800,
-            max: 1920,
-            step: 40,
-            unit: "px",
-          },
-          defaultValue: 1600,
         },
         {
           type: "range",
@@ -351,14 +299,15 @@ export const schema = createSchema({
         },
       ],
     },
+    {
+      group: "Layout",
+      inputs: layoutInputs,
+    },
   ],
   presets: {
     heading: "As Seen In",
     headingAlignment: "center",
     headingSpacing: 32,
-    paddingTop: 48,
-    paddingBottom: 48,
-    desktopMaxWidth: 1600,
     gap: 32,
     mobileItems: 2,
     tabletItems: 4,
