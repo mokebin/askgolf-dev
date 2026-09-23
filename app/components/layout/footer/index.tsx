@@ -1,16 +1,12 @@
-import { Image } from "@shopify/hydrogen";
-import { useThemeSettings, useTranslation } from "@weaverse/hydrogen";
+import { useThemeSettings } from "@weaverse/hydrogen";
 import { cva } from "class-variance-authority";
 import { useLegacyThemeText } from "~/hooks/use-legacy-theme-text";
-import { useShopMenu } from "~/hooks/use-shop-menu";
 import type { ThemeSettings } from "~/types/weaverse";
 import { cn } from "~/utils/cn";
 import { FooterCountrySelector } from "../country-selector/footer-country-selector";
 import { FooterMenu } from "../menu/footer-menu";
-import { NewsletterForm } from "./newsletter-form";
 import { PaymentMethods } from "./payment-methods";
 import { SocialLinks } from "./social-links";
-import { StoreInfo } from "./store-info";
 
 const footerVariants = cva("", {
   variants: {
@@ -28,17 +24,14 @@ const footerVariants = cva("", {
 });
 
 export function Footer() {
-  const { shopName } = useShopMenu();
   const themeText = useLegacyThemeText();
+
   const {
     footerWidth,
     socialFacebook,
     socialInstagram,
     socialLinkedIn,
     socialX,
-    footerLogoData,
-    footerLogoWidth,
-    newsletterInputWidth,
     showPaymentMethods,
     showAmazonPay,
     showPayPal,
@@ -52,42 +45,39 @@ export function Footer() {
     showDiners,
     showDiscover,
     showAlipay,
+    footerShippingTitle,
+    footerShippingProvider,
   } = useThemeSettings<ThemeSettings>();
-  const { t } = useTranslation();
+
+  const copyright =
+    themeText("footer.copyright") ||
+    `${new Date().getFullYear()} ASK ECHO GOLF. All Rights Reserved.`;
+
+  const shippingTitle = footerShippingTitle || "Safe & Fast Shipping";
+
+  const shippingProvider = footerShippingProvider || "Fast delivery";
 
   return (
     <footer
       className={cn(
-        "w-full bg-(--color-footer-bg) pt-9 text-(--color-footer-text) lg:pt-16",
+        "w-full bg-(--color-footer-bg) pt-8 text-(--color-footer-text)",
+        "lg:pt-10",
         footerVariants({ padding: footerWidth }),
       )}
     >
-      <div
-        className={cn(
-          "h-full w-full space-y-9",
-          footerVariants({ width: footerWidth }),
-        )}
-      >
-        <div className="space-y-2 lg:space-y-9">
-          <div className="grid w-full gap-8 lg:grid-cols-3">
-            <div className="flex flex-col gap-6">
-              {footerLogoData ? (
-                <div className="relative" style={{ width: footerLogoWidth }}>
-                  <Image
-                    data={footerLogoData}
-                    sizes="auto"
-                    width={500}
-                    className="h-full w-full object-contain object-left"
-                  />
-                </div>
-              ) : (
-                <h3 className="font-medium text-base uppercase">{shopName}</h3>
-              )}
-              {themeText("footer.bio") ? (
-                <div
-                  dangerouslySetInnerHTML={{ __html: themeText("footer.bio") }}
-                />
-              ) : null}
+      <div className={cn("w-full", footerVariants({ width: footerWidth }))}>
+        <div
+          className={cn(
+            "grid w-full gap-8 border-b border-line-subtle pb-8",
+            "lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-10 lg:pb-10",
+          )}
+        >
+          <FooterMenu />
+
+          <aside className="flex flex-col gap-6">
+            <div>
+              <h3 className="mb-4 text-sm font-medium">Follow Us</h3>
+
               <SocialLinks
                 socialInstagram={socialInstagram}
                 socialX={socialX}
@@ -95,41 +85,47 @@ export function Footer() {
                 socialFacebook={socialFacebook}
               />
             </div>
-            <StoreInfo
-              addressTitle={themeText("footer.addressTitle")}
-              storeAddress={themeText("footer.storeAddress")}
-              storeEmail={themeText("footer.storeEmail")}
-            />
-            <NewsletterForm
-              title={themeText("footer.newsletterTitle")}
-              description={themeText("footer.newsletterDescription")}
-              placeholder={themeText("footer.newsletterPlaceholder")}
-              buttonText={themeText("footer.newsletterButtonText")}
-              inputWidth={newsletterInputWidth}
-            />
-          </div>
-          <FooterMenu />
+
+            <div>
+              <h3 className="mb-3 text-sm font-medium">100% Safe Payment</h3>
+
+              <PaymentMethods
+                showPaymentMethods={showPaymentMethods}
+                showAmazonPay={showAmazonPay}
+                showPayPal={showPayPal}
+                showKlarna={showKlarna}
+                showGooglePay={showGooglePay}
+                showApplePay={showApplePay}
+                showJCB={showJCB}
+                showAmericanExpress={showAmericanExpress}
+                showVisa={showVisa}
+                showMastercard={showMastercard}
+                showDiners={showDiners}
+                showDiscover={showDiscover}
+                showAlipay={showAlipay}
+              />
+            </div>
+
+            <div>
+              <h3 className="mb-2 text-sm font-medium">{shippingTitle}</h3>
+              <p className="text-xs opacity-80">{shippingProvider}</p>
+            </div>
+          </aside>
         </div>
-        <div className="flex flex-col justify-center lg:grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-line-subtle border-t py-9">
-          <div className="flex gap-2">
+
+        <div
+          className={cn(
+            "flex flex-col gap-5 py-6 text-sm",
+            "lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center",
+          )}
+        >
+          <div className="order-1 lg:order-3 lg:justify-self-end">
             <FooterCountrySelector />
           </div>
-          <p>{themeText("footer.copyright")}</p>
-          <PaymentMethods
-            showPaymentMethods={showPaymentMethods}
-            showAmazonPay={showAmazonPay}
-            showPayPal={showPayPal}
-            showKlarna={showKlarna}
-            showGooglePay={showGooglePay}
-            showApplePay={showApplePay}
-            showJCB={showJCB}
-            showAmericanExpress={showAmericanExpress}
-            showVisa={showVisa}
-            showMastercard={showMastercard}
-            showDiners={showDiners}
-            showDiscover={showDiscover}
-            showAlipay={showAlipay}
-          />
+
+          <p className="order-2 text-xs opacity-80 lg:order-2 lg:text-center">
+            {copyright}
+          </p>
         </div>
       </div>
     </footer>

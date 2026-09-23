@@ -4,6 +4,18 @@ export const footerSettings = {
   group: "Footer",
   inputs: [
     {
+      type: "text",
+      name: "footerShippingTitle",
+      label: "Shipping title",
+      defaultValue: "Safe & Fast Shipping",
+    },
+    {
+      type: "text",
+      name: "footerShippingProvider",
+      label: "Shipping provider",
+      defaultValue: "Fast delivery",
+    },
+    {
       type: "select",
       name: "footerWidth",
       label: "Footer width",

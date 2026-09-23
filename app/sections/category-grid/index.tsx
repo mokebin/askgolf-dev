@@ -1,4 +1,5 @@
 import { createSchema } from "@weaverse/hydrogen";
+import type { ReactNode } from "react";
 import type { SectionProps } from "~/components/section";
 import { layoutInputs, Section } from "~/components/section";
 
@@ -15,11 +16,11 @@ export default function CategoryGrid(props: CategoryGridProps) {
     ...rest
   } = props;
 
-  const categoryChildren = Array.isArray(children)
-    ? children
-    : children
-      ? [children]
-      : [];
+  const categoryChildren: ReactNode[] = Array.isArray(children)
+    ? (children as ReactNode[])
+    : children == null
+      ? []
+      : [children as ReactNode];
 
   return (
     <Section {...rest}>

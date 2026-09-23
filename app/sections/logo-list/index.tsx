@@ -1,10 +1,9 @@
 /*
  * 标题、Swiper、每屏数量、箭头和间距。
  */
-
 import { createSchema } from "@weaverse/hydrogen";
 import clsx from "clsx";
-import { type CSSProperties, useId } from "react";
+import { type CSSProperties, type ReactNode, useId } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { SectionProps } from "~/components/section";
@@ -40,11 +39,11 @@ export default function LogoList(props: LogoListProps) {
   const id = useId().replace(/:/g, "");
   const previousButtonClass = `logo-list-prev-${id}`;
   const nextButtonClass = `logo-list-next-${id}`;
-  const logoChildren = Array.isArray(children)
-    ? children
-    : children
-      ? [children]
-      : [];
+  const logoChildren: ReactNode[] = Array.isArray(children)
+    ? (children as ReactNode[])
+    : children == null
+      ? []
+      : [children as ReactNode];
   const canLoop = loop && logoChildren.length > desktopItems;
 
   const swiperStyle = {
