@@ -47,6 +47,7 @@ function MenuLinks({ items }: { items: SingleMenuItem[] }) {
 export function FooterMenu() {
   const { footerMenu } = useShopMenu();
   const items = footerMenu.items as unknown as SingleMenuItem[];
+  const desktopColumnCount = Math.min(Math.max(items.length, 1), 4);
 
   return (
     <>
@@ -98,7 +99,12 @@ export function FooterMenu() {
       </Accordion.Root>
 
       {/* Desktop expanded menu */}
-      <div className="hidden w-full grid-cols-4 gap-8 lg:grid">
+      <div
+        className="hidden w-full gap-8 lg:grid"
+        style={{
+          gridTemplateColumns: `repeat(${desktopColumnCount}, minmax(0, 1fr))`,
+        }}
+      >
         {items.map(({ id, to, title, items: childItems }) => (
           <div key={id} className="flex flex-col gap-6">
             <h4 className="text-base font-medium text-(--color-footer-text)">
