@@ -16,9 +16,11 @@ export default function CategoryGrid(props: CategoryGridProps) {
     ...rest
   } = props;
 
-  const categoryChildren = (
-    Array.isArray(children) ? children : children ? [children] : []
-  ) as ReactNode[];
+  const categoryChildren: ReactNode[] = Array.isArray(children)
+    ? (children as ReactNode[])
+    : children == null
+      ? []
+      : [children as ReactNode];
   return (
     <Section {...rest}>
       <div className="w-full">
