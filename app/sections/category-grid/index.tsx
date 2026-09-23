@@ -21,7 +21,6 @@ export default function CategoryGrid(props: CategoryGridProps) {
     : children == null
       ? []
       : [children as ReactNode];
-
   return (
     <Section {...rest}>
       <div className="w-full">
